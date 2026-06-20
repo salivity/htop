@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Does htop Differ From top in Linux? - htop</title>
+    <meta name="description" content="When managing system resources in Linux, the top and htop command-line utilities are the most common tools for monitoring CPU, memory, and running processes. While both serve the same fundamental purpose, top is a traditional, bare-bones utility pre-inst">
+    <link rel="canonical" href="https://salivity.github.io/htop/article/how-does-htop-differ-from-top-in-linux">
+    <link rel="icon" href="/htop/favicon.ico">
+    <link rel="stylesheet" href="/htop/css/style.css">
+    <script src="/htop/js/fuse.min.js"></script>
+    <script src="/htop/js/script.js" defer></script>
+    <script id="MathJax-script" src="/htop/js/mathjax.min.js" async></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Does htop Differ From top in Linux? - htop" />
+    <meta property="og:url" content="https://salivity.github.io/htop/article/how-does-htop-differ-from-top-in-linux" />
+    <meta property="og:image:url" content="https://salivity.github.io/htop/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/htop/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When managing system resources in Linux, the top and htop command-line utilities are the most common tools for monitoring CPU, memory, and running processes. While both serve the same fundamental purpose, top is a traditional, bare-bones utility pre-inst" />
+    <link rel="manifest" href="/htop/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/htop/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>htop</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="https://github.com/salivity" title="Github" aria-label="Go To Github Profile Page"><svg class="svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"></path></svg></a></li>
+                <li><a href="/htop/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-does-htop-differ-from-top-in-linux">How Does htop Differ
+From top in Linux?</h1>
+<p>When managing system resources in Linux, the <code>top</code> and
+<code>htop</code> command-line utilities are the most common tools for
+monitoring CPU, memory, and running processes. While both serve the same
+fundamental purpose, <code>top</code> is a traditional, bare-bones
+utility pre-installed on almost all Unix-like systems, whereas
+<code>htop</code> is a modern, interactive enhancement. This article
+compares their user interfaces, navigation, resource display, and
+process management capabilities to help you understand why many system
+administrators prefer <code>htop</code> for daily operations.</p>
+<h3 id="visual-interface-and-readability">Visual Interface and
+Readability</h3>
+<p>The most immediate difference between the two commands is how they
+present data visually.</p>
+<ul>
+<li><strong>top:</strong> Offers a monochrome, text-heavy interface. It
+displays system statistics in plain text blocks, which can be difficult
+to scan quickly under heavy system loads.</li>
+<li><strong>htop:</strong> Features a vibrant, color-coded interface. It
+utilizes text-based graphs and progress bars to represent CPU core
+usage, memory allocation, and swap space. The use of color allows
+administrators to instantly spot resource bottlenecks at a glance.</li>
+</ul>
+<h3 id="multi-core-cpu-monitoring">Multi-Core CPU Monitoring</h3>
+<p>Modern servers and workstations often utilize processors with dozens
+of cores. The two tools handle this high-core count differently by
+default.</p>
+<ul>
+<li><strong>top:</strong> Groups all CPU usage into a single percentage
+line by default. While you can expand this to see individual cores by
+pressing the <code>1</code> key, the layout remains basic.</li>
+<li><strong>htop:</strong> Automatically detects and lists every CPU
+core individually at the top of the screen, complete with dedicated
+usage bars. This makes it incredibly easy to see if a single thread is
+maxing out a specific core.</li>
+</ul>
+<h3 id="navigation-and-user-interactivity">Navigation and User
+Interactivity</h3>
+<p>Interacting with the process list requires memorizing shortcuts in
+the traditional utility, whereas the modern alternative behaves more
+like a graphical application.</p>
+<ul>
+<li><strong>top:</strong> Does not support mouse interactions. Scrolling
+through the process list requires specific keyboard commands, and you
+cannot scroll horizontally to view long command paths.</li>
+<li><strong>htop:</strong> Supports both keyboard arrow keys and mouse
+clicks for scrolling vertically and horizontally. You can click on
+specific processes or menu items directly within the terminal
+window.</li>
+</ul>
+<h3 id="process-management-and-control">Process Management and
+Control</h3>
+<p>Managing rogue processes or filtering through hundreds of active
+tasks highlights the operational efficiency gap between the two
+tools.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Feature</th>
+<th>top Command</th>
+<th>htop Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Process Tree View</strong></td>
+<td>Requires pressing <code>V</code>, layout is basic</td>
+<td>Requires pressing <code>F5</code>, displays clear parent-child
+hierarchies</td>
+</tr>
+<tr>
+<td><strong>Searching &amp; Filtering</strong></td>
+<td>Limited filtering capabilities</td>
+<td>Dedicated search (<code>F3</code>) and filter (<code>F4</code>) by
+process name or user</td>
+</tr>
+<tr>
+<td><strong>Killing a Process</strong></td>
+<td>Requires typing the specific PID and the signal code</td>
+<td>Arrow down to the process, press <code>F9</code>, and select the
+signal from a menu</td>
+</tr>
+</tbody>
+</table>
+<p>While <code>top</code> remains an indispensable tool due to its
+universal availability on every Linux server out of the box,
+<code>htop</code> provides a significantly more efficient,
+user-friendly, and powerful environment for real-time system
+troubleshooting.</p></article>
+        <div id=comments-container></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/htop'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'light' ? 'github-light' : 'github-dark'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/htop/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/htop/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

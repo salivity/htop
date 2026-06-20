@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Is My CPU at 100% in htop? - htop</title>
+    <meta name="description" content="When your CPU usage bar reaches 100% in the htop Linux command line tool, it indicates that the corresponding CPU core is operating at maximum capacity and has no idle cycles left to spare. This guide provides a quick overview of what a 100% CPU reading">
+    <link rel="canonical" href="https://salivity.github.io/htop/article/why-is-my-cpu-at-100-in-htop">
+    <link rel="icon" href="/htop/favicon.ico">
+    <link rel="stylesheet" href="/htop/css/style.css">
+    <script src="/htop/js/fuse.min.js"></script>
+    <script src="/htop/js/script.js" defer></script>
+    <script id="MathJax-script" src="/htop/js/mathjax.min.js" async></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Is My CPU at 100% in htop? - htop" />
+    <meta property="og:url" content="https://salivity.github.io/htop/article/why-is-my-cpu-at-100-in-htop" />
+    <meta property="og:image:url" content="https://salivity.github.io/htop/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/htop/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When your CPU usage bar reaches 100% in the htop Linux command line tool, it indicates that the corresponding CPU core is operating at maximum capacity and has no idle cycles left to spare. This guide provides a quick overview of what a 100% CPU reading" />
+    <link rel="manifest" href="/htop/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/htop/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>htop</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="https://github.com/salivity" title="Github" aria-label="Go To Github Profile Page"><svg class="svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"></path></svg></a></li>
+                <li><a href="/htop/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="why-is-my-cpu-at-100-in-htop">Why Is My CPU at 100% in
+htop?</h1>
+<p>When your CPU usage bar reaches 100% in the <code>htop</code> Linux
+command line tool, it indicates that the corresponding CPU core is
+operating at maximum capacity and has no idle cycles left to spare. This
+guide provides a quick overview of what a 100% CPU reading means, how
+<code>htop</code> visualizes processing load, how to distinguish between
+normal spikes and resource bottlenecks, and the steps you can take to
+identify and manage the specific processes causing the high
+utilization.</p>
+<h3 id="understanding-the-100-cpu-reading">Understanding the 100% CPU
+Reading</h3>
+<p>In <code>htop</code>, each CPU core is represented by a numbered
+progress bar. When a bar hits 100%, it means that particular core is
+fully utilized by active tasks. Linux manages CPU time by dividing it
+among running processes; a maxed-out bar signifies that the demand for
+processing power on that core meets or exceeds what the hardware can
+physically deliver at that microsecond.</p>
+<h3 id="decoding-htop-color-coding">Decoding htop Color Coding</h3>
+<p>A 100% CPU bar in <code>htop</code> isn’t just a solid block; it is
+color-coded to tell you exactly <em>what</em> is consuming the
+processor’s time. Understanding these colors helps diagnose the root
+cause:</p>
+<ul>
+<li><strong>Blue:</strong> Low-priority processes (tasks that have been
+“niced” to let other programs run first).</li>
+<li><strong>Green:</strong> Standard user-space processes (your
+applications, web servers, or user-initiated scripts).</li>
+<li><strong>Red:</strong> Kernel-space processes (the Linux OS itself
+handling system tasks, I/O operations, or hardware drivers).</li>
+<li><strong>Cyan/Purple:</strong> Virtualization overhead (steal time or
+guest virtual machines running on the host).</li>
+</ul>
+<p>If the bar is mostly green, a specific user application is working
+hard. If it is mostly red, the system might be struggling with disk
+access, network traffic, or driver issues.</p>
+<h3 id="is-100-cpu-always-a-problem">Is 100% CPU Always a Problem?</h3>
+<p>Not necessarily. To accurately diagnose the system health, you must
+consider the duration and context of the spike:</p>
+<ul>
+<li><strong>Temporary Spikes (Normal):</strong> It is completely normal
+for a CPU core to hit 100% when launching a heavy application, compiling
+code, compressing a large file, or rendering a video. The CPU is simply
+doing its job by working as fast as possible to complete a task.</li>
+<li><strong>Persistent Max-Out (Problematic):</strong> If a CPU bar
+remains at 100% for minutes at a time without dropping, and the system
+becomes sluggish or unresponsive, you are dealing with a bottleneck.
+This could indicate an infinite loop in a script, a stuck background
+daemon, or a server under heavier traffic than it can handle.</li>
+</ul>
+<h3 id="how-to-find-and-manage-the-offending-process">How to Find and
+Manage the Offending Process</h3>
+<p><code>htop</code> makes it easy to find out which program is draining
+your resources so you can take corrective action:</p>
+<ol type="1">
+<li><strong>Sort by CPU Usage:</strong> By default, <code>htop</code>
+sorts processes by their CPU consumption. The process at the very top of
+the list is usually the culprit behind the 100% bar. If it isn’t sorted,
+you can press <code>P</code> on your keyboard to force sort by CPU
+percentage.</li>
+<li><strong>Inspect the Process:</strong> Look at the
+<code>COMMAND</code> column to identify the name of the program. Check
+the <code>PID</code> (Process ID) number on the far left.</li>
+<li><strong>Take Action (Nice or Kill):</strong> If the process is
+legitimate but taking too much power, you can lower its priority (“nice”
+it) by pressing <code>F7</code> or <code>F8</code>. If the process is
+frozen or unwanted, you can terminate it directly within
+<code>htop</code> by pressing <code>F9</code> (Kill) and selecting
+signal <code>15</code> (SIGTERM) for a clean exit, or signal
+<code>9</code> (SIGKILL) to force it to close immediately.</li>
+</ol></article>
+        <div id=comments-container></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/htop'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'light' ? 'github-light' : 'github-dark'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/htop/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/htop/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

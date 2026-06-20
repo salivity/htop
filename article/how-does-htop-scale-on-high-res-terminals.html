@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Does htop Scale on High-Res Terminals? - htop</title>
+    <meta name="description" content="The Linux htop command-line utility provides a dynamic, real-time visualization of system resources, including CPU, memory, and swap usage. On modern, high-resolution terminals, htop scales its visual meters by dynamically calculating the available chara">
+    <link rel="canonical" href="https://salivity.github.io/htop/article/how-does-htop-scale-on-high-res-terminals">
+    <link rel="icon" href="/htop/favicon.ico">
+    <link rel="stylesheet" href="/htop/css/style.css">
+    <script src="/htop/js/fuse.min.js"></script>
+    <script src="/htop/js/script.js" defer></script>
+    <script id="MathJax-script" src="/htop/js/mathjax.min.js" async></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Does htop Scale on High-Res Terminals? - htop" />
+    <meta property="og:url" content="https://salivity.github.io/htop/article/how-does-htop-scale-on-high-res-terminals" />
+    <meta property="og:image:url" content="https://salivity.github.io/htop/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/htop/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Linux htop command-line utility provides a dynamic, real-time visualization of system resources, including CPU, memory, and swap usage. On modern, high-resolution terminals, htop scales its visual meters by dynamically calculating the available chara" />
+    <link rel="manifest" href="/htop/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/htop/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>htop</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="https://github.com/salivity" title="Github" aria-label="Go To Github Profile Page"><svg class="svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"></path></svg></a></li>
+                <li><a href="/htop/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-does-htop-scale-on-high-res-terminals">How Does htop Scale
+on High-Res Terminals?</h1>
+<p>The Linux <code>htop</code> command-line utility provides a dynamic,
+real-time visualization of system resources, including CPU, memory, and
+swap usage. On modern, high-resolution terminals, <code>htop</code>
+scales its visual meters by dynamically calculating the available
+character columns and lines rather than relying on fixed pixel counts.
+This article explores how <code>htop</code> leverages terminal row and
+column structures, utilizes text-based bar graphs, adapts its layout
+configuration, and handles multi-core CPU scaling on expansive
+displays.</p>
+<h3 id="terminal-grid-layout-and-ncurses-scaling">Terminal Grid Layout
+and Ncurses Scaling</h3>
+<p>Unlike graphical applications that scale using pixels or DPI
+settings, <code>htop</code> operates entirely within a text-based
+terminal environment. It relies on the <strong>ncurses</strong> (new
+curses) library to determine the exact dimensions of the terminal
+window.</p>
+<ul>
+<li><strong>Character Columns:</strong> Instead of scaling graphics,
+<code>htop</code> scales by character width. When a terminal window is
+resized or opened on a high-resolution display, <code>htop</code>
+queries the terminal’s geometry to find the total number of available
+rows and columns.</li>
+<li><strong>Dynamic Redraws:</strong> When a user maximizes a terminal
+on a 4K monitor, the underlying ncurses library triggers a screen resize
+signal (<code>SIGWINCH</code>). <code>htop</code> catches this signal
+and instantly recalculates how many characters wide each meter can
+be.</li>
+</ul>
+<h3 id="horizontal-scaling-of-resource-meters">Horizontal Scaling of
+Resource Meters</h3>
+<p>The familiar CPU and memory bars at the top of the <code>htop</code>
+interface consist of text brackets, such as <code>[|||||||    ]</code>.
+The scaling of these bars is purely mathematical based on horizontal
+space.</p>
+<p>If a high-resolution terminal provides 200 columns of text instead of
+the standard 80 columns, <code>htop</code> allocates a larger percentage
+of those columns to the visual bars. The tool calculates the width of
+the text labels (like <code>Mem [</code>) and the percentage text (like
+<code>12.5G/32.0G]</code>), then stretches the actual progress bar to
+fill the remaining horizontal character slots. This results in a much
+finer, more precise visual granularity for resource tracking.</p>
+<h3 id="column-layouts-for-multi-core-cpus">Column Layouts for
+Multi-Core CPUs</h3>
+<p>High-resolution displays often mean plenty of horizontal workspace.
+On systems with massive core counts (such as 64-core or 128-core
+servers), <code>htop</code> utilizes its extra terminal columns by
+splitting the CPU meters into multiple parallel columns.</p>
+<p>In the <code>htop</code> setup menu, users can configure the header
+to display CPU cores in one, two, four, or more columns. On a standard
+resolution screen, four columns of CPUs would truncate the data and look
+cluttered. On a high-resolution display, the extra columns allow
+<code>htop</code> to neatly map out dozens of individual CPU core bars
+side-by-side without overlapping the process list below.</p>
+<h3 id="vertical-scaling-and-process-list-expansion">Vertical Scaling
+and Process List Expansion</h3>
+<p>While the top header of <code>htop</code> scales horizontally to make
+meters wider or more numerous, the bottom portion of the tool scales
+vertically to display more data.</p>
+<p>On a high-resolution display with a small font size, a terminal
+window can easily render over 100 rows of text. <code>htop</code>
+capitalizes on this vertical abundance by expanding the process viewer.
+Rather than showing only 15 or 20 active processes, it utilizes every
+single available vertical row to show a massive, real-time list of
+running tasks, reducing the need for manual scrolling and giving system
+administrators an instant, comprehensive view of system activity.</p></article>
+        <div id=comments-container></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/htop'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'light' ? 'github-light' : 'github-dark'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/htop/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/htop/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

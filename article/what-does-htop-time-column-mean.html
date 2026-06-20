@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Does htop TIME+ Column Mean? - htop</title>
+    <meta name="description" content="The htop interactive process viewer is a staple for Linux system administrators and power users monitoring system performance. When looking at the process list, you will notice a column labeled TIME+. This article explains exactly what the TIME+ column m">
+    <link rel="canonical" href="https://salivity.github.io/htop/article/what-does-htop-time-column-mean">
+    <link rel="icon" href="/htop/favicon.ico">
+    <link rel="stylesheet" href="/htop/css/style.css">
+    <script src="/htop/js/fuse.min.js"></script>
+    <script src="/htop/js/script.js" defer></script>
+    <script id="MathJax-script" src="/htop/js/mathjax.min.js" async></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="What Does htop TIME+ Column Mean? - htop" />
+    <meta property="og:url" content="https://salivity.github.io/htop/article/what-does-htop-time-column-mean" />
+    <meta property="og:image:url" content="https://salivity.github.io/htop/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/htop/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The htop interactive process viewer is a staple for Linux system administrators and power users monitoring system performance. When looking at the process list, you will notice a column labeled TIME+. This article explains exactly what the TIME+ column m" />
+    <link rel="manifest" href="/htop/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/htop/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>htop</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="https://github.com/salivity" title="Github" aria-label="Go To Github Profile Page"><svg class="svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"></path></svg></a></li>
+                <li><a href="/htop/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="what-does-htop-time-column-mean">What Does htop TIME+ Column
+Mean?</h1>
+<p>The <code>htop</code> interactive process viewer is a staple for
+Linux system administrators and power users monitoring system
+performance. When looking at the process list, you will notice a column
+labeled <strong>TIME+</strong>. This article explains exactly what the
+TIME+ column measures, how it differs from standard tools like
+<code>ps</code>, and how to interpret its value to identify
+resource-heavy applications.</p>
+<h2 id="understanding-the-time-column">Understanding the TIME+
+Column</h2>
+<p>In <code>htop</code>, the <strong>TIME+</strong> column measures the
+total <strong>CPU time</strong> a specific process has consumed since it
+was started.</p>
+<p>It is a common misconception that this column represents the
+“wall-clock” elapsed time (how long the program has been running in
+real-world time). Instead, it strictly measures the duration the
+processor has spent executing instructions for that specific
+process.</p>
+<h3 id="why-the-matters-precision">Why the “+” Matters: Precision</h3>
+<p>If you are familiar with the standard <code>top</code> command, you
+might be used to seeing a <code>TIME</code> column. The addition of the
+plus sign (<code>+</code>) in <code>htop</code> represents a higher
+level of precision:</p>
+<ul>
+<li><strong>Standard <code>top</code> (TIME):</strong> Typically
+measures CPU time in hundredths of a second or displays it in a
+<code>MM:SS</code> format.</li>
+<li><strong><code>htop</code> (TIME+):</strong> Measures CPU time with
+<strong>millisecond precision</strong>, formatted as
+<code>MM:SS.hh</code> (Minutes:Seconds.Hundredths of a second).</li>
+</ul>
+<p>If a process has been running for a long time and consuming massive
+amounts of CPU, the format will automatically expand to include hours
+(<code>HH:MM:SS.hh</code>).</p>
+<h2 id="how-cpu-time-accumulates">How CPU Time Accumulates</h2>
+<p>Because TIME+ measures actual processor utilization, the way time
+accumulates can sometimes seem counterintuitive:</p>
+<ul>
+<li><strong>Idle Processes:</strong> If a text editor is left open for
+three hours but you aren’t typing, its wall-clock time is 3 hours, but
+its TIME+ value might only be a few seconds. It only accumulates time
+when the CPU is actively processing its tasks.</li>
+<li><strong>Multi-threaded Processes:</strong> If a process utilizes
+multiple CPU cores simultaneously, it can accumulate CPU time
+<em>faster</em> than real-world time. For example, if a video rendering
+tool fully utilizes 4 CPU cores for exactly 10 seconds of real-world
+time, its TIME+ value will increase by roughly 40 seconds.</li>
+</ul>
+<h2 id="how-to-use-time-for-troubleshooting">How to Use TIME+ for
+Troubleshooting</h2>
+<p>The TIME+ column is one of the best metrics for tracking down
+“stealthy” resource hogs. While the <strong>%CPU</strong> column tells
+you what is happening <em>right now</em>, the TIME+ column tells you the
+<em>historical impact</em> of a process.</p>
+<ul>
+<li><strong>Spotting Background Drains:</strong> A background daemon
+might only use 2% of your CPU at any given millisecond (making it look
+innocent in the %CPU column), but if it runs constantly, its TIME+ value
+will be exceptionally high.</li>
+<li><strong>Identifying Leaks:</strong> If two identical services were
+started at the same time, but one has a vastly higher TIME+ value, it
+indicates that specific instance is working significantly harder or is
+potentially stuck in an infinite loop.</li>
+</ul></article>
+        <div id=comments-container></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/htop'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'light' ? 'github-light' : 'github-dark'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/htop/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/htop/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>
