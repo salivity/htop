@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What is the primary purpose of htop in Linux? - htop</title>
+    <meta name="description" content="The htop command-line tool in Linux is an interactive, real-time system monitor designed to give users a comprehensive overview of their system's resource utilization. It serves as an advanced alternative to the traditional top command, allowing administ">
+    <link rel="canonical" href="https://salivity.github.io/htop/article/what-is-the-primary-purpose-of-htop-in-linux">
+    <link rel="icon" href="/htop/favicon.ico">
+    <link rel="stylesheet" href="/htop/css/style.css">
+    <link media="print" rel="stylesheet" href="/htop/css/print.css">
+    <script src="/htop/js/fuse.min.js"></script>
+    <script src="/htop/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="What is the primary purpose of htop in Linux? - htop" />
+    <meta property="og:url" content="https://salivity.github.io/htop/article/what-is-the-primary-purpose-of-htop-in-linux" />
+    <meta property="og:image:url" content="https://salivity.github.io/htop/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/htop/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The htop command-line tool in Linux is an interactive, real-time system monitor designed to give users a comprehensive overview of their system's resource utilization. It serves as an advanced alternative to the traditional top command, allowing administ" />
+    <link rel="manifest" href="/htop/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/htop/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>htop</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="https://github.com/salivity" title="Github" aria-label="Go To Github Profile Page"><svg class="svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"></path></svg></a></li>
+                <li><a href="/htop/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="what-is-the-primary-purpose-of-htop-in-linux">What is the
+primary purpose of htop in Linux?</h1>
+<p>The <code>htop</code> command-line tool in Linux is an interactive,
+real-time system monitor designed to give users a comprehensive overview
+of their system’s resource utilization. It serves as an advanced
+alternative to the traditional <code>top</code> command, allowing
+administrators and users to track CPU usage, memory consumption, swap
+space, and running processes. Beyond just monitoring, <code>htop</code>
+provides a user-friendly interface to manage tasks, signal processes,
+and troubleshoot performance bottlenecks directly from the terminal.</p>
+<h3 id="real-time-resource-monitoring">Real-Time Resource
+Monitoring</h3>
+<p>At the very top of its display, <code>htop</code> offers a dynamic,
+color-coded visual representation of the system’s hardware performance.
+This makes it instantly clear how hard the system is working.</p>
+<ul>
+<li><strong>CPU Usage:</strong> Displays individual bars for every CPU
+core, showing the exact percentage of processing power being utilized by
+user tasks, system tasks, and low-priority programs.</li>
+<li><strong>Memory and Swap:</strong> Shows a live tracker of used
+versus free Random Access Memory (RAM) alongside swap space utilization,
+helping identify if the system is running out of physical memory.</li>
+<li><strong>System Load Average:</strong> Provides the standard
+1-minute, 5-minute, and 15-minute system load averages to indicate
+overall computational strain over time.</li>
+</ul>
+<h3 id="process-management-and-control">Process Management and
+Control</h3>
+<p>Unlike static monitoring tools, <code>htop</code> allows users to
+actively interact with running processes without needing to know their
+specific Process IDs (PIDs) beforehand.</p>
+<p>Users can scroll vertically through the complete list of running
+tasks and scroll horizontally to view full command-line arguments. Using
+keyboard shortcuts or mouse clicks, an administrator can select a
+specific process to change its execution priority (known as “renicing”)
+or terminate it instantly by sending various Unix signals, such as
+<code>SIGTERM</code> or <code>SIGKILL</code>.</p>
+<h3 id="advanced-filtering-and-navigation">Advanced Filtering and
+Navigation</h3>
+<p>To help users quickly pinpoint resource-heavy applications,
+<code>htop</code> includes powerful built-in sorting and filtering
+mechanisms.</p>
+<ul>
+<li><strong>Tree View:</strong> Users can organize processes into a
+hierarchical tree structure, which visually maps out parent-child
+relationships between applications (for example, seeing which specific
+browser tab process is consuming the most memory under a parent browser
+process).</li>
+<li><strong>Search and Filter:</strong> Typing a keyword instantly
+isolates processes by name, filtering out the noise of background system
+daemons.</li>
+<li><strong>Sorting Options:</strong> With a single keystroke, the
+entire process list can be re-sorted by CPU percentage, memory usage,
+execution time, or ownership, allowing for rapid troubleshooting during
+performance degradation.</li>
+</ul></article>
+        <div id=comments-container></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/htop'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/htop/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/htop/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Does D State Mean in htop? - htop</title>
+    <meta name="description" content="When monitoring system performance using the htop command-line tool in Linux, you may occasionally see a process marked with a status of D. This article explains what the "D" state signifies, why it occurs, and how it impacts your system. You will learn">
+    <link rel="canonical" href="https://salivity.github.io/htop/article/what-does-d-state-mean-in-htop">
+    <link rel="icon" href="/htop/favicon.ico">
+    <link rel="stylesheet" href="/htop/css/style.css">
+    <link media="print" rel="stylesheet" href="/htop/css/print.css">
+    <script src="/htop/js/fuse.min.js"></script>
+    <script src="/htop/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="What Does D State Mean in htop? - htop" />
+    <meta property="og:url" content="https://salivity.github.io/htop/article/what-does-d-state-mean-in-htop" />
+    <meta property="og:image:url" content="https://salivity.github.io/htop/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/htop/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When monitoring system performance using the htop command-line tool in Linux, you may occasionally see a process marked with a status of D. This article explains what the "D" state signifies, why it occurs, and how it impacts your system. You will learn" />
+    <link rel="manifest" href="/htop/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/htop/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>htop</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="https://github.com/salivity" title="Github" aria-label="Go To Github Profile Page"><svg class="svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"></path></svg></a></li>
+                <li><a href="/htop/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="what-does-d-state-mean-in-htop">What Does D State Mean in
+htop?</h1>
+<p>When monitoring system performance using the <code>htop</code>
+command-line tool in Linux, you may occasionally see a process marked
+with a status of <strong>D</strong>. This article explains what the “D”
+state signifies, why it occurs, and how it impacts your system. You will
+learn about uninterruptible sleep, its common causes—such as heavy disk
+I/O or stuck network drives—and the standard methods used to resolve
+these stubborn processes.</p>
+<h2 id="understanding-the-uninterruptible-sleep-state">Understanding the
+Uninterruptible Sleep State</h2>
+<p>In Linux process management, the <strong>D</strong> state stands for
+<strong>uninterruptible sleep</strong> (Data deferment / Disk sleep).
+When a process enters this state, it is actively waiting for a hardware
+resource or a kernel-level operation to complete, most commonly direct
+Input/Output (I/O) operations like reading from or writing to a hard
+drive.</p>
+<p>Unlike standard sleeping processes (marked as <strong>S</strong> for
+interruptible sleep), a process in the D state cannot be interrupted by
+asynchronous signals.</p>
+<blockquote>
+<p><strong>Key Distinction:</strong> A process in the <strong>S</strong>
+state will wake up immediately if you send it a termination signal. A
+process in the <strong>D</strong> state will completely ignore all
+signals, including <code>SIGINT</code> (Ctrl+C) and the uncatchable
+<code>SIGKILL</code> (kill -9), until the kernel resource it is waiting
+for becomes available.</p>
+</blockquote>
+<h2 id="common-causes-of-the-d-state">Common Causes of the D State</h2>
+<p>Processes usually transition into the D state for a fraction of a
+second during normal disk operations. However, if a process remains
+stuck in the D state for an extended period, it typically points to an
+underlying hardware or configuration issue.</p>
+<ul>
+<li><strong>Slow or Failing Storage:</strong> If a hard drive or SSD is
+experiencing physical failure, bad sectors, or extreme I/O congestion,
+the kernel will stall the process until the drive responds.</li>
+<li><strong>Stuck Network File Systems (NFS):</strong> One of the most
+frequent culprits is a mounted network drive (like NFS or Samba) that
+has lost its connection. The process requests data, and the kernel waits
+indefinitely for the network timeout.</li>
+<li><strong>Device Driver Bugs:</strong> A malfunctioning kernel module
+or hardware driver may fail to release a lock, leaving the calling
+process trapped in limbo.</li>
+<li><strong>Deadlocks:</strong> Rare kernel deadlocks where two
+processes are waiting for resources held by each other can trap them in
+an un-killable state.</li>
+</ul>
+<h2 id="how-to-handle-a-stuck-d-process">How to Handle a Stuck “D”
+Process</h2>
+<p>Because the kernel protects processes in the D state to prevent data
+corruption and filesystem instability, you cannot force-terminate them
+using standard commands like <code>kill</code>. If you have a process
+lingering in this state, consider the following troubleshooting
+steps:</p>
+<h3 id="identify-the-source-of-the-block">1. Identify the Source of the
+Block</h3>
+<p>Before acting, determine exactly what the process is waiting on. You
+can check the system logs or use the <code>wchan</code> (waiting
+channel) metric to see the kernel function blocking the process:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ps</span> <span class="at">-eo</span> pid,stat,wchan,cmd <span class="kw">|</span> <span class="fu">grep</span> <span class="st">&quot; D &quot;</span></span></code></pre></div>
+<h3 id="clear-the-underlying-hardware-or-network-block">2. Clear the
+Underlying Hardware or Network Block</h3>
+<p>If the process is stuck on a network share, attempting to forcefully
+unmount the share can sometimes break the cycle and release the
+process:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">umount</span> <span class="at">-f</span> <span class="at">-l</span> /path/to/network/mount</span></code></pre></div>
+<h3 id="check-system-logs-for-io-errors">3. Check System Logs for I/O
+Errors</h3>
+<p>Run <code>dmesg</code> or check <code>/var/log/syslog</code> to look
+for disk read/write errors or hardware timeouts. If your storage
+controller is resetting or reporting errors, fixing the drive issue is
+the only way to clear the process.</p>
+<h3 id="the-last-resort-rebooting">4. The Last Resort: Rebooting</h3>
+<p>If the hardware or network connection cannot be restored, the process
+will remain in the D state indefinitely. Because the kernel will not
+kill the process, your only remaining option to clear it from memory is
+to safely reboot the system.</p></article>
+        <div id=comments-container></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/htop'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/htop/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/htop/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

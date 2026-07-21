@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Does htop Manage Container Processes? - htop</title>
+    <meta name="description" content="The htop command-line utility provides a dynamic, real-time view of a Linux system's running processes, including those operating inside isolated containers like Docker or LXC. Because containers share the host system's Linux kernel, htop running on the">
+    <link rel="canonical" href="https://salivity.github.io/htop/article/how-does-htop-manage-container-processes">
+    <link rel="icon" href="/htop/favicon.ico">
+    <link rel="stylesheet" href="/htop/css/style.css">
+    <link media="print" rel="stylesheet" href="/htop/css/print.css">
+    <script src="/htop/js/fuse.min.js"></script>
+    <script src="/htop/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Does htop Manage Container Processes? - htop" />
+    <meta property="og:url" content="https://salivity.github.io/htop/article/how-does-htop-manage-container-processes" />
+    <meta property="og:image:url" content="https://salivity.github.io/htop/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/htop/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The htop command-line utility provides a dynamic, real-time view of a Linux system's running processes, including those operating inside isolated containers like Docker or LXC. Because containers share the host system's Linux kernel, htop running on the" />
+    <link rel="manifest" href="/htop/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/htop/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>htop</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="https://github.com/salivity" title="Github" aria-label="Go To Github Profile Page"><svg class="svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"></path></svg></a></li>
+                <li><a href="/htop/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-does-htop-manage-container-processes">How Does htop Manage
+Container Processes?</h1>
+<p>The <code>htop</code> command-line utility provides a dynamic,
+real-time view of a Linux system’s running processes, including those
+operating inside isolated containers like Docker or LXC. Because
+containers share the host system’s Linux kernel, <code>htop</code>
+running on the host naturally sees and displays all containerized
+processes alongside standard host processes. However, without proper
+configuration, distinguishing which process belongs to which container
+can be challenging. This article explores how <code>htop</code>
+interacts with containerized environments, how to identify container
+processes using built-in features, and how to run <code>htop</code>
+inside a container to isolate its view.</p>
+<h3 id="the-host-view-kernel-sharing-and-visibility">The Host View:
+Kernel Sharing and Visibility</h3>
+<p>Unlike traditional virtual machines that run their own isolated guest
+kernels, containers leverage host kernel features called
+<strong>namespaces</strong> (for isolation) and <strong>cgroups</strong>
+(for resource limiting). Because of this shared-kernel architecture, the
+host operating system’s process table contains every single process
+running on the machine, regardless of whether it is inside a Docker
+container, an LXC container, or running natively on the host.</p>
+<p>When you run <code>htop</code> directly on the host system, it reads
+data from the <code>/proc</code> filesystem. Since the host’s
+<code>/proc</code> directory has visibility into all namespaces,
+<code>htop</code> displays containerized processes by default.</p>
+<h3 id="identifying-container-processes-in-htop">Identifying Container
+Processes in htop</h3>
+<p>While <code>htop</code> shows container processes automatically, they
+initially look identical to standard host processes. To differentiate
+them, <code>htop</code> offers specific features and columns that map
+processes back to their respective containers:</p>
+<ul>
+<li><strong>The Container Column:</strong> Modern versions of
+<code>htop</code> include a dedicated <code>CONTAINER</code> column.
+When enabled, this column displays the name or ID of the container (such
+as the Docker container name) handling that specific process.</li>
+<li><strong>Virtual Environment (VIRTUAL) Column:</strong> Similar to
+the container column, this field identifies the virtualization or
+containerization technology associated with the process.</li>
+<li><strong>Filtering by cgroups:</strong> You can add the
+<code>CGROUP</code> column to <code>htop</code>. Since container
+runtimes organize containers into specific cgroup pathways (e.g.,
+<code>/docker/simulation...</code> or
+<code>/system.slice/docker-...</code>), reading the cgroup path allows
+you to pinpoint the exact container origin.</li>
+</ul>
+<p>To enable these columns, press <code>F2</code> (or <code>S</code>) to
+enter the Setup menu, navigate to <strong>Columns</strong>, select the
+desired column from the available choices, and add it to your active
+display.</p>
+<h3 id="tree-view-and-process-hierarchy">Tree View and Process
+Hierarchy</h3>
+<p>Another powerful way to analyze containerized workloads in
+<code>htop</code> is by enabling the <strong>Tree View</strong> (by
+pressing <code>F5</code>).</p>
+<p>Container engines run a main daemon process on the host (like
+<code>dockerd</code> for Docker or <code>containerd</code>). When a
+container starts, the engine spawns shim or runtime processes, which
+then act as the parents to the actual applications running inside the
+container. Tree view visually maps this hierarchy, allowing you to see
+exactly which application processes are children of the Docker or LXC
+daemon.</p>
+<h3 id="running-htop-inside-a-container">Running htop Inside a
+Container</h3>
+<p>If you execute <code>htop</code> <em>inside</em> a specific Docker or
+LXC container rather than on the host, its behavior changes due to
+namespace isolation:</p>
+<ul>
+<li><strong>PID Namespace Isolation:</strong> By default, a container is
+restricted to its own Process ID (PID) namespace. Inside the container,
+<code>htop</code> will only see the processes running within that
+specific container, mapping the container’s primary application as PID
+1.</li>
+<li><strong>The Host PID Flag:</strong> If you need <code>htop</code> to
+run from a containerized administrative tool but still view the entire
+host system, you must bypass this isolation. For Docker, this is
+achieved by passing the <code>--pid=host</code> flag during
+execution:</li>
+</ul>
+<p><code>docker run --rm -it --pid=host --privileged pidone/htop</code></p>
+<p>This command grants the containerized <code>htop</code> instance full
+visibility into the host’s process table, mirroring the behavior of
+running the tool directly on the host machine.</p></article>
+        <div id=comments-container></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/htop'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/htop/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/htop/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

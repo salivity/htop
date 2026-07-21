@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Bulk Select Processes in htop? - htop</title>
+    <meta name="description" content="The htop interactive process viewer is a powerful tool for monitoring system resources in Linux, but it also allows you to manage multiple processes simultaneously. While many users know how to kill a single process using the F9 key, managing large group">
+    <link rel="canonical" href="https://salivity.github.io/htop/article/how-to-bulk-select-processes-in-htop">
+    <link rel="icon" href="/htop/favicon.ico">
+    <link rel="stylesheet" href="/htop/css/style.css">
+    <link media="print" rel="stylesheet" href="/htop/css/print.css">
+    <script src="/htop/js/fuse.min.js"></script>
+    <script src="/htop/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How to Bulk Select Processes in htop? - htop" />
+    <meta property="og:url" content="https://salivity.github.io/htop/article/how-to-bulk-select-processes-in-htop" />
+    <meta property="og:image:url" content="https://salivity.github.io/htop/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/htop/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The htop interactive process viewer is a powerful tool for monitoring system resources in Linux, but it also allows you to manage multiple processes simultaneously. While many users know how to kill a single process using the F9 key, managing large group" />
+    <link rel="manifest" href="/htop/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/htop/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>htop</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="https://github.com/salivity" title="Github" aria-label="Go To Github Profile Page"><svg class="svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"></path></svg></a></li>
+                <li><a href="/htop/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-to-bulk-select-processes-in-htop">How to Bulk Select
+Processes in htop?</h1>
+<p>The <code>htop</code> interactive process viewer is a powerful tool
+for monitoring system resources in Linux, but it also allows you to
+manage multiple processes simultaneously. While many users know how to
+kill a single process using the <code>F9</code> key, managing large
+groups of processes requires bulk selection. By using the
+<strong>Spacebar</strong> to tag individual processes or specific
+shortcut keys to tag entire process trees, you can select multiple
+entries at once. Once tagged, any action you perform—such as killing
+processes, changing their nice values, or pinning them to specific CPU
+cores—will apply to the entire selection simultaneously.</p>
+<h3 id="step-by-step-guide-to-bulk-selection">Step-by-Step Guide to Bulk
+Selection</h3>
+<p>To perform bulk actions in <code>htop</code>, you must first “tag”
+the target processes. Tagged processes will change color (usually
+turning yellow or bold, depending on your terminal color scheme) to
+indicate they are selected.</p>
+<ol type="1">
+<li><strong>Navigate to the Target Process:</strong> Use the <strong>Up
+and Down Arrow keys</strong> to scroll through the process list and
+highlight the first process you want to select.</li>
+<li><strong>Tag the Process:</strong> Press the
+<strong>Spacebar</strong>. You will notice the process highlights in a
+different color, and the cursor automatically moves down to the next
+line.</li>
+<li><strong>Select Additional Processes:</strong> Continue moving up or
+down and pressing the <strong>Spacebar</strong> on every process you
+want to include in your bulk action.</li>
+<li><strong>Untag a Process:</strong> If you accidentally select the
+wrong process, simply highlight it again and press the
+<strong>Spacebar</strong> to deselect it.</li>
+</ol>
+<h3 id="bulk-selecting-entire-process-trees">Bulk Selecting Entire
+Process Trees</h3>
+<p>If you need to select a parent process and all of its child processes
+(for example, multiple workers of a web server or browser tabs), tagging
+them individually can be tedious. You can select them all at once using
+the tree view shortcut.</p>
+<ul>
+<li><strong>Switch to Tree View:</strong> Press
+<strong><code>F5</code></strong> to organize the process list into a
+hierarchical tree format.</li>
+<li><strong>Tag a Process Tree:</strong> Highlight the parent process at
+the top of the branch and press <strong><code>c</code></strong>
+(lowercase c). This will automatically tag the parent and all of its
+nested child processes.</li>
+<li><strong>Untag a Process Tree:</strong> Press
+<strong><code>c</code></strong> again on the parent process to clear the
+selection for that entire branch.</li>
+</ul>
+<h3 id="clearing-all-selection-tags">Clearing All Selection Tags</h3>
+<p>If you have selected dozens of processes across your system and want
+to clear all tags instantly without scrolling through the list, use the
+global untag shortcut:</p>
+<ul>
+<li>Press <strong><code>U</code></strong> (uppercase U, or
+<code>Shift + u</code>) to unmark all currently tagged processes across
+the entire system.</li>
+</ul>
+<h3 id="executing-bulk-actions-on-tagged-processes">Executing Bulk
+Actions on Tagged Processes</h3>
+<p>Once you have successfully selected your group of processes, you can
+execute a command that applies to all of them at the same time. The most
+common bulk actions include:</p>
+<ul>
+<li><strong>Bulk Kill / Send Signals (<code>F9</code>):</strong> Press
+<code>F9</code>. Select your desired signal (such as
+<code>SIGTERM</code> for a clean exit or <code>SIGKILL</code> for a
+forced termination) from the left-hand menu and press
+<code>Enter</code>. The signal will be sent to every tagged process at
+once.</li>
+<li><strong>Bulk Renice (<code>F7</code> / <code>F8</code>):</strong>
+Press <code>F7</code> to increase the priority (reduce the nice value)
+or <code>F8</code> to decrease the priority (increase the nice value)
+for all selected processes simultaneously.</li>
+<li><strong>Bulk CPU Affinity (<code>a</code>):</strong> Press
+<code>a</code> to open the CPU affinity menu, where you can check or
+uncheck specific CPU cores. Pressing <code>Enter</code> will force all
+tagged processes to run only on your selected cores.</li>
+</ul></article>
+        <div id=comments-container></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/htop'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/htop/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/htop/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

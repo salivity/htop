@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identifying User Commands in htop Linux - htop</title>
+    <meta name="description" content="This article provides a straightforward guide on how to track and identify which specific user executed a particular command using the htop interactive process viewer in Linux. You will learn how to read the user column, filter processes by username, and">
+    <link rel="canonical" href="https://salivity.github.io/htop/article/identifying-user-commands-in-htop-linux">
+    <link rel="icon" href="/htop/favicon.ico">
+    <link rel="stylesheet" href="/htop/css/style.css">
+    <link media="print" rel="stylesheet" href="/htop/css/print.css">
+    <script src="/htop/js/fuse.min.js"></script>
+    <script src="/htop/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Identifying User Commands in htop Linux - htop" />
+    <meta property="og:url" content="https://salivity.github.io/htop/article/identifying-user-commands-in-htop-linux" />
+    <meta property="og:image:url" content="https://salivity.github.io/htop/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/htop/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides a straightforward guide on how to track and identify which specific user executed a particular command using the htop interactive process viewer in Linux. You will learn how to read the user column, filter processes by username, and" />
+    <link rel="manifest" href="/htop/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/htop/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>htop</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="https://github.com/salivity" title="Github" aria-label="Go To Github Profile Page"><svg class="svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"></path></svg></a></li>
+                <li><a href="/htop/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="identifying-user-commands-in-htop-linux">Identifying User
+Commands in htop Linux</h1>
+<p>This article provides a straightforward guide on how to track and
+identify which specific user executed a particular command using the
+<strong>htop</strong> interactive process viewer in Linux. You will
+learn how to read the user column, filter processes by username, and
+customize the interface to trace active commands back to their
+origin.</p>
+<h2 id="reading-the-user-column-in-htop">Reading the User Column in
+htop</h2>
+<p>By default, <strong>htop</strong> displays a comprehensive list of
+all running processes across the entire system. To see who owns a
+specific command, look at the <strong>USER</strong> column on the left
+side of the screen. This column directly maps the process ID (PID) and
+the running command (found under the <strong>Command</strong> column on
+the right) to the specific user account that initiated it.</p>
+<h2 id="filtering-processes-by-a-specific-user">Filtering Processes by a
+Specific User</h2>
+<p>If the screen is cluttered with processes from multiple users, you
+can isolate a single user’s activities using the built-in filtering
+tool:</p>
+<ol type="1">
+<li>Press the <strong>F4</strong> key (or
+<strong>Invert</strong>/<strong>Filter</strong> at the bottom of the
+screen).</li>
+<li>Type the name of the user you want to investigate.</li>
+<li>Press <strong>Enter</strong>.</li>
+</ol>
+<p>Alternatively, you can press <strong>u</strong> to open a dedicated
+user selection menu. Use the arrow keys to scroll through the list of
+system users, select the target user, and press <strong>Enter</strong>
+to display only the commands executed by that specific individual.</p>
+<h2 id="expanding-command-arguments-for-better-identification">Expanding
+Command Arguments for Better Identification</h2>
+<p>Sometimes, multiple users might run the same generic command (like
+<code>python</code> or <code>bash</code>). To accurately identify what a
+specific user is doing, you need to see the full command-line
+arguments:</p>
+<ul>
+<li>Press <strong>e</strong> to show the full environment variables for
+the selected process.</li>
+<li>Press <strong>F5</strong> to switch to the <strong>Tree
+View</strong>, which visually maps parent-child process relationships.
+This helps you see if a user’s command was triggered by a specific
+background script or system service.</li>
+</ul></article>
+        <div id=comments-container></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/htop'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/htop/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/htop/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

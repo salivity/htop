@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Does htop Read Metrics From /proc? - htop</title>
+    <meta name="description" content="The htop command-line utility is a staple for Linux system administrators, offering a real-time, interactive overview of system resources like CPU usage, memory consumption, and running processes. Unlike static tools, htop achieves its dynamic monitoring">
+    <link rel="canonical" href="https://salivity.github.io/htop/article/how-does-htop-read-metrics-from-proc">
+    <link rel="icon" href="/htop/favicon.ico">
+    <link rel="stylesheet" href="/htop/css/style.css">
+    <link media="print" rel="stylesheet" href="/htop/css/print.css">
+    <script src="/htop/js/fuse.min.js"></script>
+    <script src="/htop/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Does htop Read Metrics From /proc? - htop" />
+    <meta property="og:url" content="https://salivity.github.io/htop/article/how-does-htop-read-metrics-from-proc" />
+    <meta property="og:image:url" content="https://salivity.github.io/htop/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/htop/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The htop command-line utility is a staple for Linux system administrators, offering a real-time, interactive overview of system resources like CPU usage, memory consumption, and running processes. Unlike static tools, htop achieves its dynamic monitoring" />
+    <link rel="manifest" href="/htop/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/htop/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>htop</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="https://github.com/salivity" title="Github" aria-label="Go To Github Profile Page"><svg class="svg-icon" focusable="false" aria-hidden="true" viewBox="0 0 24 24"><path d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"></path></svg></a></li>
+                <li><a href="/htop/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="how-does-htop-read-metrics-from-proc">How Does htop Read Metrics
+From /proc?</h1>
+<p>The <code>htop</code> command-line utility is a staple for Linux
+system administrators, offering a real-time, interactive overview of
+system resources like CPU usage, memory consumption, and running
+processes. Unlike static tools, <code>htop</code> achieves its dynamic
+monitoring by continuously parsing virtual files within the
+<code>/proc</code> filesystem—a pseudo-filesystem generated on the fly
+by the Linux kernel. This article explores how <code>htop</code>
+translates these raw, text-based kernel metrics into an intuitive,
+color-coded terminal interface.</p>
+<h3 id="the-pseudo-filesystem-as-a-data-source">The Pseudo-Filesystem as
+a Data Source</h3>
+<p>In Linux, the <code>/proc</code> directory does not contain actual
+files stored on a disk; instead, it acts as an interface to the Linux
+kernel’s internal data structures. When <code>htop</code> requests
+information, the kernel generates text outputs representing the current
+state of the system.</p>
+<p><code>htop</code> specifically targets several key files to populate
+its main dashboard:</p>
+<ul>
+<li><strong>/proc/stat</strong>: This file provides aggregate kernel
+statistics. <code>htop</code> reads this to calculate overall and
+per-core CPU utilization. It extracts time spent in various states, such
+as <code>user</code>, <code>system</code>, <code>nice</code>, and
+<code>idle</code>.</li>
+<li><strong>/proc/meminfo</strong>: This contains detailed statistics
+about system memory. <code>htop</code> parses this file to display
+total, used, free, and buffered/cached RAM, as well as swap usage.</li>
+<li><strong>/proc/loadavg</strong>: This file provides the system load
+averages over 1, 5, and 15-minute intervals, which <code>htop</code>
+displays in the upper-right corner of its interface.</li>
+</ul>
+<h3 id="tracking-individual-processes">Tracking Individual
+Processes</h3>
+<p>To populate the detailed process list at the bottom of the screen,
+<code>htop</code> scans the numbered directories within
+<code>/proc</code>. Each number corresponds to a specific Process ID
+(PID) currently running on the system.</p>
+<p>For every PID directory, <code>htop</code> opens and reads several
+specific files:</p>
+<ul>
+<li><strong>/proc/[PID]/stat</strong>: Contains status information about
+the process, such as its current state (running, sleeping, zombie),
+virtual memory size, and CPU time consumed in user and kernel mode.</li>
+<li><strong>/proc/[PID]/statm</strong>: Provides a simplified breakdown
+of the process’s memory usage in pages, allowing <code>htop</code> to
+determine resident set size (RSS) and shared memory.</li>
+<li><strong>/proc/[PID]/cmdline</strong>: Holds the command that
+originally started the process, which <code>htop</code> formats and
+displays in the “Command” column.</li>
+<li><strong>/proc/[PID]/status</strong>: Contains a human-readable
+version of much of the data in <code>stat</code>, including user and
+group IDs (UID/GID) used to display the process owner.</li>
+</ul>
+<h3 id="the-read-and-refresh-cycle">The Read-and-Refresh Cycle</h3>
+<p>Because system metrics change every millisecond, <code>htop</code>
+operates in a continuous loop dictated by its refresh interval
+(defaulting to every 1.5 seconds). During each cycle, the utility clears
+its internal data structures, performs rapid read operations across the
+necessary <code>/proc</code> files, and calculates differences between
+the current data and the data from the previous cycle.</p>
+<p>For example, to calculate the CPU percentage shown in the bars,
+<code>htop</code> cannot rely on a single snapshot from
+<code>/proc/stat</code>. It must take two reads separated by time,
+calculate the delta of total CPU time versus idle CPU time, and convert
+that ratio into a percentage. Once these calculations are complete,
+<code>htop</code> uses the <code>ncurses</code> library to efficiently
+redraw only the parts of the terminal screen that have changed, ensuring
+minimal CPU overhead from the monitoring tool itself.</p></article>
+        <div id=comments-container></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/htop'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/htop/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/htop/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

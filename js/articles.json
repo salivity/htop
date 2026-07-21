@@ -1,0 +1,602 @@
+[
+  [
+    100,
+    "What Does the O Shortcut Do in htop?",
+    "The htop command-line utility is a powerful, interactive process viewer for Linux that allows users to monitor system resources and manage running processes in real time. Among its many keyboard shortcuts, the O (uppercase) or o (lowercase) key plays a c",
+    false
+  ],
+  [
+    99,
+    "How to View Virtualization and Container IDs in htop",
+    "This article provides a straightforward guide on how to configure and view hardware virtualization status and container IDs within the htop interactive process viewer in Linux. You will learn the specific setup steps required to display virtualization ty",
+    false
+  ],
+  [
+    98,
+    "What Visual Cue Shows a New Process in htop?",
+    "The htop command line tool provides a real-time, dynamic view of a Linux system's running processes, using distinct color flashes to visually signal the creation of new processes and the termination of existing ones. When a new process spawns, its corres",
+    false
+  ],
+  [
+    97,
+    "How to Force Htop to Save Configuration Changes Immediately",
+    "The htop command-line utility is a powerful, interactive process manager for Linux, but users often find that custom settings—such as altered color schemes, hidden threads, or rearranged columns—revert to default after closing the application. This a",
+    false
+  ],
+  [
+    96,
+    "How to Change the Delete Key Behavior in Htop?",
+    "The htop interactive process viewer allows users to customize its interface and functionality through a dedicated setup menu. While many users expect the Delete key to instantly kill a selected process, its default behavior can vary or require confirmati",
+    false
+  ],
+  [
+    95,
+    "Find Zombie Parent Process with htop Tree View",
+    "Zombie processes in Linux consume system resources by holding slots in the process table, and they can only be cleared if their parent process acknowledges them. This article provides a quick overview of how to isolate these defunct processes using htop,",
+    false
+  ],
+  [
+    94,
+    "What Does Spacebar Do in htop Linux Tool?",
+    "Pressing the spacebar on a highlighted process in the htop Linux command-line tool allows you to select and tag that specific process, or multiple processes simultaneously. This tagging mechanism enables you to perform bulk actions—such as killing, rep",
+    false
+  ],
+  [
+    93,
+    "How to Filter htop by Current Terminal Session",
+    "The htop command-line utility is a powerful, interactive process viewer for Linux, but its default view displays every running process on the system, which can be overwhelming. This article provides a quick overview of how to isolate and display only the",
+    false
+  ],
+  [
+    92,
+    "Does htop Support Mouse Wheel Scrolling?",
+    "The htop command-line utility for Linux does natively support mouse wheel scrolling, allowing users to navigate through the process list and menus using their mouse instead of relying solely on keyboard shortcuts. However, because htop runs inside a term",
+    false
+  ],
+  [
+    91,
+    "Identifying User Commands in htop Linux",
+    "This article provides a straightforward guide on how to track and identify which specific user executed a particular command using the htop interactive process viewer in Linux. You will learn how to read the user column, filter processes by username, and",
+    false
+  ],
+  [
+    90,
+    "Which htop Column Shows Process Memory Percentage?",
+    "This article provides a quick overview of how to monitor memory usage in Linux using the htop command-line tool, specifically identifying the column that displays the percentage of memory consumed by an individual process. You will learn the exact name o",
+    false
+  ],
+  [
+    89,
+    "How to Move Meters in htop Header From Left to Right",
+    "The htop interactive process viewer allows users to customize its header layout, including moving performance meters like CPU, memory, and tasks between the left and right columns. This article provides a straightforward, step-by-step guide on how to ent",
+    false
+  ],
+  [
+    88,
+    "What Does htop TIME+ Column Mean?",
+    "The htop interactive process viewer is a staple for Linux system administrators and power users monitoring system performance. When looking at the process list, you will notice a column labeled TIME+. This article explains exactly what the TIME+ column m",
+    false
+  ],
+  [
+    87,
+    "Sort htop by Start Time",
+    "This article provides a quick overview and step-by-step guide on how to sort running processes by their start time using the htop interactive process viewer in Linux. By default, htop sorts processes by CPU usage, but configuring it to display and sort b",
+    false
+  ],
+  [
+    86,
+    "Where is the official htop repository hosted?",
+    "The official home and main repository for the open-source development of the htop Linux command line tool is hosted on GitHub under the htop-dev organization. This centralized repository serves as the primary hub where developers submit bug reports, prop",
+    false
+  ],
+  [
+    85,
+    "How to View Total Tasks and Threads in htop",
+    "This article provides a quick overview of how to locate and interpret the total number of running tasks and threads within the system header of the htop interactive process viewer in Linux. You will learn exactly where these metrics are displayed, how to",
+    false
+  ],
+  [
+    84,
+    "What Happens If You Run htop With Sudo?",
+    "Running the htop command with sudo privileges in Linux grants the system monitor elevated administrative access, allowing you to view all running processes across all users and modify system-critical operations. While standard users can run htop to view",
+    false
+  ],
+  [
+    83,
+    "How to Toggle Two Columns of Meters in htop?",
+    "The htop command-line utility provides a dynamic, real-time view of your Linux system's resources, displaying CPU, memory, and swap usage as visual meters at the top of the interface. While it defaults to a specific layout, you can easily customize the h",
+    false
+  ],
+  [
+    82,
+    "What Does the R State Mean in htop?",
+    "The htop command-line utility provides a real-time, interactive overview of the processes running on a Linux system. Within its interface, the \"State\" column (labeled S or STATE) uses single-letter codes to indicate the current operational status of each",
+    false
+  ],
+  [
+    81,
+    "How Does htop Scale on High-Res Terminals?",
+    "The Linux htop command-line utility provides a dynamic, real-time visualization of system resources, including CPU, memory, and swap usage. On modern, high-resolution terminals, htop scales its visual meters by dynamically calculating the available chara",
+    false
+  ],
+  [
+    80,
+    "Can you export the htop process snapshot to a text file?",
+    "The htop interactive process viewer for Linux does not feature a built-in, one-click button or shortcut to directly export its current live display snapshot into a text file. While htop is designed strictly for real-time, interactive system monitoring wi",
+    false
+  ],
+  [
+    79,
+    "How to Monitor Network Traffic in htop?",
+    "This article provides a quick overview and practical guide on how to monitor network-related process statistics using the htop interactive process viewer in Linux. While traditionally focused on CPU, memory, and disk I/O, newer versions of htop support r",
+    false
+  ],
+  [
+    78,
+    "What Does Purple Mean in htop CPU Bar?",
+    "The htop command-line utility is a popular interactive process viewer for Linux that uses color-coded bars to represent CPU usage. While many users recognize green as standard process activity, the appearance of purple often causes confusion. In htop, a",
+    false
+  ],
+  [
+    77,
+    "How to Send SIGKILL in htop",
+    "The htop command-line utility provides an interactive way to manage system processes in Linux, including the ability to terminate unresponsive applications. While pressing the [F9] or [K] key defaults to sending a SIGTERM (Signal 15) to gracefully shut d",
+    false
+  ],
+  [
+    76,
+    "What default signal does htop send on kill?",
+    "When managing processes in Linux using the htop interactive viewer, pressing the F9 key (or k) opens the signal menu to terminate a process. By default, htop highlights and sends SIGTERM (signal 15) to the selected process. This article explains why SIGT",
+    false
+  ],
+  [
+    75,
+    "How to Clear Filters and Searches in Htop?",
+    "The htop interactive process viewer is a powerful tool for monitoring system resources in Linux, but it's easy to get stuck in a filtered or searched view. When you apply a search or a filter, htop limits the visible process list to only the items matchi",
+    false
+  ],
+  [
+    74,
+    "What Does Percent Mean Next to htop Memory?",
+    "The percentage sign next to the memory value in the htop Linux command-line tool indicates the proportion of total physical RAM currently being used by the system's active processes. While htop displays memory usage through visual progress bars and raw g",
+    false
+  ],
+  [
+    73,
+    "Track CPU Affinity with htop",
+    "This article provides a straightforward guide on how to view and track the CPU affinity of a process using the htop interactive process viewer in Linux. CPU affinity binds a process or thread to specific central processing units, which can optimize perfo",
+    false
+  ],
+  [
+    72,
+    "Htop Meter Display Options: How to Customize Layout",
+    "This article provides a comprehensive overview of the display style configuration options for meters in the htop Linux command-line tool. You will learn about the different visual formats available—such as bars, text, and graphs—and how to access the",
+    false
+  ],
+  [
+    71,
+    "How to Check Swap Usage with htop in Linux",
+    "This article provides a quick overview of how to monitor swap space utilization on a Linux system using the htop command-line utility. You will learn how to read the default memory bar graphs, customize the display to show textual swap statistics, and in",
+    false
+  ],
+  [
+    70,
+    "Does htop Support Custom User Macros?",
+    "This article explores whether the popular Linux command-line monitoring tool htop supports custom user macros for process management. While htop is renowned for its interactive interface, built-in filtering, and seamless process signal management, it doe",
+    false
+  ],
+  [
+    69,
+    "How to Fix htop Frozen or Unresponsive?",
+    "When the htop interactive process viewer freezes or becomes completely unresponsive in a Linux terminal, it typically indicates that the terminal emulator has intercepted a control signal, the SSH session has dropped, or the system is experiencing severe",
+    false
+  ],
+  [
+    68,
+    "Why Use \"Show Custom Thread Names\" in htop?",
+    "The \"Show custom thread names\" option in the htop Linux command-line tool allows users to see the specific, developer-assigned names of individual threads within a process, rather than just inheriting the name of the main parent process. This article exp",
+    false
+  ],
+  [
+    67,
+    "Show Full Path of Commands in htop",
+    "Learn how to configure the htop interactive process viewer in Linux to display the complete file path of running commands instead of just the shortened program names. This quick guide covers the keyboard shortcut method and the step-by-step setup menu co",
+    false
+  ],
+  [
+    66,
+    "What Does the Gray or White Bar Mean in Htop?",
+    "The memory meter in the htop Linux command-line tool uses a color-coded bar to provide a detailed breakdown of system memory usage. While bright colors like green, blue, and yellow represent active processes, buffers, and cache, the gray or white portion",
+    false
+  ],
+  [
+    65,
+    "How to Jump to a Specific PID in htop?",
+    "The htop interactive process viewer is a powerful tool for monitoring system resources and managing processes in Linux. While navigating a massive list of running applications can be daunting, htop provides a built-in search and filtering mechanism that",
+    false
+  ],
+  [
+    64,
+    "How to Sort by PID in htop Linux?",
+    "The htop command-line utility is a powerful, interactive process manager for Linux that allows users to monitor system resources and manage running processes in real time. While htop defaults to sorting processes by CPU usage, you can easily change this",
+    false
+  ],
+  [
+    63,
+    "What Does the htop M_RESIDENT Column Filter Do?",
+    "Inside the setup options of the htop Linux command line tool, enabling the MRESIDENT column filter instructs the program to display only the memory that is currently and actively residing in the system's physical RAM for each process. This filter provide",
+    false
+  ],
+  [
+    62,
+    "How Does htop Read Metrics From /proc?",
+    "The htop command-line utility is a staple for Linux system administrators, offering a real-time, interactive overview of system resources like CPU usage, memory consumption, and running processes. Unlike static tools, htop achieves its dynamic monitoring",
+    false
+  ],
+  [
+    61,
+    "How to Change the Color Scheme in htop?",
+    "The htop command-line utility is a powerful and customizable interactive process viewer for Linux, but navigating its configuration menus to personalize its appearance can sometimes be confusing. This article provides a direct answer on how to find and c",
+    false
+  ],
+  [
+    60,
+    "How to Pause screen updates in htop?",
+    "The htop utility is a popular interactive process viewer for Linux that provides real-time updates on system resources like CPU, memory, and running processes. However, because the screen refreshes constantly, tracking a rapidly shifting process or readi",
+    false
+  ],
+  [
+    59,
+    "What Is the Default Refresh Rate of Htop?",
+    "This article provides a quick overview of the default refresh rate of the htop interactive process viewer in Linux, explains how it impacts system resource consumption, and demonstrates how to customize this interval to suit your monitoring needs. The de",
+    false
+  ],
+  [
+    58,
+    "How to Customize Column Headers in htop?",
+    "The htop utility is a powerful, interactive process viewer for Linux that allows users to monitor system resources in real time. While the default configuration provides a comprehensive overview of running processes, customizing the display columns can s",
+    false
+  ],
+  [
+    57,
+    "Can htop show disk I/O metrics per process?",
+    "The htop command-line tool can display disk I/O metrics for individual processes, but this capability requires specific system configurations and kernel support. While htop is traditionally celebrated for its real-time CPU and memory monitoring, it also",
+    false
+  ],
+  [
+    56,
+    "How Does htop Manage Container Processes?",
+    "The htop command-line utility provides a dynamic, real-time view of a Linux system's running processes, including those operating inside isolated containers like Docker or LXC. Because containers share the host system's Linux kernel, htop running on the",
+    false
+  ],
+  [
+    55,
+    "How to Check Htop Version in Linux",
+    "This article provides a quick guide on how to display the version information for htop, a popular interactive process viewer for Linux. It covers the specific command-line options available, explains how to interpret the output, and offers alternative me",
+    false
+  ],
+  [
+    54,
+    "How to View Process Executable Path in htop",
+    "This article provides a straightforward guide on how to locate and view the exact executable path of a running process using the htop interactive process viewer in Linux. You will learn the default view limitations, the specific keyboard shortcut require",
+    false
+  ],
+  [
+    53,
+    "Can You Run htop on macOS or BSD Systems?",
+    "This article explores whether the popular Linux command-line activity monitor, htop, can be used on macOS and BSD operating systems. While originally built for Linux, htop has been successfully ported to both platforms. Below, you will find an explanatio",
+    false
+  ],
+  [
+    52,
+    "How to Customize Columns in htop?",
+    "The htop command-line tool is a powerful, interactive process manager for Linux that allows users to monitor system resources and manage running processes in real time. While its default view provides a solid overview of system health, you can easily cus",
+    false
+  ],
+  [
+    51,
+    "What Does Z State Mean in Htop for a Linux Process?",
+    "When monitoring system performance using the htop command line tool in Linux, encountering a process with a status of \"Z\" indicates that the process is currently a Zombie (or a defunct process). This status means the process has completed its execution a",
+    false
+  ],
+  [
+    50,
+    "What Does D State Mean in htop?",
+    "When monitoring system performance using the htop command-line tool in Linux, you may occasionally see a process marked with a status of D. This article explains what the \"D\" state signifies, why it occurs, and how it impacts your system. You will learn",
+    false
+  ],
+  [
+    49,
+    "What Does the S Column Mean in htop?",
+    "The S column in the htop Linux command-line tool stands for Process State. This column provides a real-time snapshot of what a specific process is currently doing, indicating whether it is actively running, sleeping, zombie, or stopped. Understanding the",
+    false
+  ],
+  [
+    48,
+    "How to Collapse or Expand Process Trees in htop?",
+    "The htop interactive process viewer allows users to monitor system resources and manage running processes in a dynamic, user-friendly terminal interface. When viewing processes in a hierarchical tree format, navigating large numbers of child processes ca",
+    false
+  ],
+  [
+    47,
+    "What Is the Htop Follow Process Feature?",
+    "The htop utility is an interactive system monitor for Linux that provides a real-time, color-coded view of system resources and running processes. While navigating a busy system, processes constantly shift positions on the screen as their CPU or memory u",
+    false
+  ],
+  [
+    46,
+    "How to Save Column Layout Changes in htop?",
+    "The htop interactive process viewer allows users to fully customize their system monitoring interface, including adding, removing, and reordering columns. To save changes made to the column layout in the htop setup menu, you must navigate using the arrow",
+    false
+  ],
+  [
+    45,
+    "Why Is My CPU at 100% in htop?",
+    "When your CPU usage bar reaches 100% in the htop Linux command line tool, it indicates that the corresponding CPU core is operating at maximum capacity and has no idle cycles left to spare. This guide provides a quick overview of what a 100% CPU reading",
+    false
+  ],
+  [
+    44,
+    "Can htop Monitor Multiple CPU Cores Individually?",
+    "The htop Linux command-line tool is fully capable of monitoring multiple CPU cores individually, providing a real-time, color-coded visual breakdown of how system resources are distributed across each core. Unlike the traditional top command, which aggre",
+    false
+  ],
+  [
+    43,
+    "How to View Process Environment Variables in htop?",
+    "The htop command-line utility provides an interactive, real-time overview of running processes in Linux, including a built-in feature to inspect the environment variables of any active process. While many users rely on htop purely for monitoring CPU and",
+    false
+  ],
+  [
+    42,
+    "What Library Does htop Use for Its UI?",
+    "The htop Linux command line tool relies primarily on the ncurses (New Curses) library to render its interactive, text-based user interface (TUI). This library allows htop to display a color-coded, multi-windowed terminal layout that updates in real-time,",
+    false
+  ],
+  [
+    41,
+    "How to Trace System Calls with htop and strace?",
+    "Monitoring a running process in Linux often requires identifying the exact system calls it makes to the kernel. While strace is the standard command-line utility for this task, navigating process IDs (PIDs) manually can be cumbersome. The htop interactiv",
+    false
+  ],
+  [
+    40,
+    "How to View Open Files for a Process in htop",
+    "This article provides a quick guide on how to inspect the open files and network sockets associated with a specific, highlighted process using the htop interactive process viewer in Linux. By utilizing built-in shortcuts and integrating with the lsof uti",
+    false
+  ],
+  [
+    39,
+    "How to Invert Sorting Order in htop?",
+    "The htop command-line utility is a powerful, interactive process manager for Linux that allows users to monitor system resources and manage running processes in real time. While the tool automatically sorts processes by CPU usage by default, users often",
+    false
+  ],
+  [
+    38,
+    "How to Bulk Select Processes in htop?",
+    "The htop interactive process viewer is a powerful tool for monitoring system resources in Linux, but it also allows you to manage multiple processes simultaneously. While many users know how to kill a single process using the F9 key, managing large group",
+    false
+  ],
+  [
+    37,
+    "Does htop Need Root to Change Process Priority?",
+    "Managing system resources efficiently in Linux often requires adjusting process priorities using the htop command-line tool. While any user can view system performance and modify their own tasks, changing the priority of a process owned by another user i",
+    false
+  ],
+  [
+    36,
+    "How to Change Nice Value in htop?",
+    "This article provides a quick, step-by-step guide on how to directly alter the nice value—and consequently the scheduling priority—of a running process using the htop interactive text-mode process viewer in Linux. You will learn the specific keyboard",
+    false
+  ],
+  [
+    35,
+    "What Does Red Exclamation Mark Mean in htop?",
+    "The htop command-line utility provides a dynamic, real-time view of a Linux system's running processes, but certain visual cues like a red exclamation mark or distinct row highlighting can cause immediate concern. This article explains exactly what these",
+    false
+  ],
+  [
+    34,
+    "How Does htop Calculate Linux System Uptime?",
+    "The htop command line tool calculates the system uptime displayed in its header by reading raw data from the Linux kernel via the /proc/uptime file. Instead of tracking time independently, htop parses this file to find the total number of seconds the sys",
+    false
+  ],
+  [
+    33,
+    "What Does the Load Average Mean in htop?",
+    "The load average section at the top of the htop Linux command-line tool displays three distinct numbers representing the average system load over specific time intervals: the last 1 minute, 5 minutes, and 15 minutes. This metric measures the demand for s",
+    false
+  ],
+  [
+    32,
+    "How to Add Meters to the htop Header in Linux?",
+    "The htop interactive process viewer is highly customizable, allowing users to modify the system resource meters displayed at the top of the interface. This guide provides a straightforward, step-by-step walkthrough on how to enter the htop setup menu and",
+    false
+  ],
+  [
+    31,
+    "Where Does htop Store Its Configuration File?",
+    "The htop interactive process viewer stores its user configuration file within the user's home directory under the standard XDG Base Directory specification. For most modern Linux distributions, this file is located at ~/.config/htop/htoprc. This article",
+    false
+  ],
+  [
+    30,
+    "How to Filter htop by User in Linux?",
+    "The htop command-line utility is a powerful, interactive process viewer for Linux that provides a real-time, color-coded overview of system resources and running processes. While it displays all system processes by default, you can easily restrict the vi",
+    false
+  ],
+  [
+    29,
+    "How to Change the htop Update Interval?",
+    "The htop command-line utility is a powerful, interactive system monitor for Linux that provides a real-time view of processes, CPU usage, and memory consumption. By default, htop refreshes its metrics every 2 seconds, but this frequency can be easily adj",
+    false
+  ],
+  [
+    28,
+    "How to Launch htop in Monochrome Mode",
+    "The htop command-line utility is a powerful, interactive process manager for Linux, but its default multi-color interface can sometimes be difficult to read on certain terminal backgrounds or accessible displays. This article explains how to launch htop",
+    false
+  ],
+  [
+    27,
+    "How to Show Kernel Threads in htop?",
+    "The htop interactive process viewer for Linux hides kernel threads by default to keep the process list clean and readable. However, when debugging system performance or analyzing driver behavior, displaying these threads becomes necessary. This article p",
+    false
+  ],
+  [
+    26,
+    "How to Toggle User Threads in htop?",
+    "This article provides a direct guide on how to show or hide user threads within the htop interactive process viewer in Linux. By default, htop can clutter your view by listing every individual thread of a process, but a quick configuration tweak or keybo",
+    false
+  ],
+  [
+    25,
+    "Can You Use a Mouse in htop on Linux?",
+    "The Linux htop command-line tool fully supports mouse interactions, allowing users to click on menus, select processes, and navigate the interface without relying solely on keyboard shortcuts. While traditionally run in a terminal environment where keybo",
+    false
+  ],
+  [
+    24,
+    "How to Sort by CPU in htop?",
+    "This article provides a quick, step-by-step guide on how to sort running processes by CPU utilization using the htop interactive process viewer in Linux. You will learn the standard keyboard shortcuts, how to navigate the interactive menu, and how to rev",
+    false
+  ],
+  [
+    23,
+    "How to Sort by Memory Usage in htop?",
+    "The htop command-line utility is an interactive system monitor for Linux that allows users to track system resources in real time. While it defaults to sorting tasks by CPU usage, you can quickly reconfigure it to sort processes by memory consumption ins",
+    false
+  ],
+  [
+    22,
+    "What Is the SHR Column in htop?",
+    "This article provides a comprehensive guide to understanding the SHR (Shared Memory) column in the htop Linux command-line tool. It explains what shared memory represents, how Linux calculates this metric, and how to interpret it alongside other memory c",
+    false
+  ],
+  [
+    21,
+    "What Is the Difference Between VIRT and RES in htop?",
+    "When monitoring system performance in Linux using htop, understanding memory consumption is crucial for troubleshooting resource bottlenecks. Two of the most commonly misunderstood columns are VIRT (Virtual Memory) and RES (Resident Memory). While both m",
+    false
+  ],
+  [
+    20,
+    "What Does NI Mean in htop?",
+    "The NI column in the htop Linux command-line utility stands for Nice value, which represents a process's scheduling priority. This article provides a quick overview of what this metric means, how it influences CPU resource allocation, and how system admi",
+    false
+  ],
+  [
+    19,
+    "What Is the PRI Column in htop?",
+    "This article provides a quick overview of the \"PRI\" column in the htop Linux command-line tool, explaining its core meaning, how it relates to process scheduling, and how it interacts with the \"NI\" (Nice) value. You will learn how Linux determines proces",
+    false
+  ],
+  [
+    18,
+    "How to View Process Trees in htop?",
+    "The htop command-line utility provides an interactive, real-time monitoring system for Linux processes, offering a cleaner interface than the traditional top command. One of its most powerful features is the ability to display processes in a tree view hi",
+    false
+  ],
+  [
+    17,
+    "Which Function Key Exits the htop Command in Linux?",
+    "The htop command-line utility is a popular interactive process viewer and system monitor for Linux distributions. While it provides a comprehensive, real-time overview of your system's resources—such as CPU usage, memory consumption, and running tasks",
+    false
+  ],
+  [
+    16,
+    "How to Kill a Process in htop?",
+    "This article provides a straightforward, step-by-step guide on how to find, signal, and terminate processes using the htop interactive process viewer in Linux. You will learn the specific keyboard shortcuts required to open the signal menu, how to select",
+    false
+  ],
+  [
+    15,
+    "What Does the F8 Key Do in htop?",
+    "The htop command-line utility is a popular interactive process manager for Linux that provides a real-time, color-coded overview of system resources and running processes. Within this tool, the F8 key serves a specific and crucial function: it decreases",
+    false
+  ],
+  [
+    14,
+    "What Does the F7 Key Do in Linux htop?",
+    "The htop command-line utility is a powerful, interactive process viewer for Linux that allows users to monitor system resources and manage running processes in real time. Among its many function key shortcuts, the F7 key plays a specific role in process",
+    false
+  ],
+  [
+    13,
+    "How to Search for a Process by Name or PID in htop?",
+    "The htop interactive process viewer is a powerful alternative to the traditional top command in Linux, offering a real-time, color-coded overview of system resources. While navigating a massive list of running processes can be overwhelming, htop provides",
+    false
+  ],
+  [
+    12,
+    "Which Function Key Filters by Name in htop?",
+    "The htop command-line utility is a powerful, interactive process manager for Linux that allows users to monitor system resources and manage running processes in real time. When dealing with a crowded process list, quickly isolating a specific application",
+    false
+  ],
+  [
+    11,
+    "How to Enter the Setup Menu in htop?",
+    "The htop command-line tool is a popular, interactive process viewer for Linux that allows users to monitor system resources in real time. To customize its display, configure meters, and change color schemes, you need to access its built-in setup menu. Th",
+    false
+  ],
+  [
+    10,
+    "How to Access the Help Menu in htop?",
+    "The htop command-line utility is a powerful, interactive process manager for Linux that allows users to monitor system resources and manage running processes in real time. Navigating its various features efficiently often requires quick access to its bui",
+    false
+  ],
+  [
+    9,
+    "How to Scroll Horizontally in htop?",
+    "This article provides a quick overview and step-by-step guide on how to navigate horizontally within the htop interactive process viewer in Linux. When a running process has a long command line, the text often cuts off at the edge of the terminal window.",
+    false
+  ],
+  [
+    8,
+    "What Does Orange or Yellow Mean in htop Memory Bar?",
+    "The color-coded memory usage bar in the htop Linux command line tool can be confusing at first glance, but it provides a detailed breakdown of how your system's RAM is being allocated. In standard htop configurations, the orange or yellow color specifica",
+    false
+  ],
+  [
+    7,
+    "What Does Blue Mean in Htop Memory Usage?",
+    "The htop command-line utility is a popular interactive process viewer for Linux that provides a real-time, color-coded overview of system resource consumption. When monitoring memory usage, the main RAM bar features several distinct colors representing d",
+    false
+  ],
+  [
+    6,
+    "What Does Green Mean in Htop Memory Usage?",
+    "The htop command-line utility is a popular interactive process viewer for Linux that provides a real-time, color-coded overview of system resource consumption. In the memory usage bar (labeled Mem), the green color specifically signifies used memory, whi",
+    false
+  ],
+  [
+    5,
+    "What Do htop CPU Bar Colors Mean?",
+    "The htop command-line utility provides a real-time, interactive overview of system resources in Linux, using a vibrant, color-coded bar to display CPU usage. While it quickly shows how hard your processor is working, the different colors within that bar",
+    false
+  ],
+  [
+    4,
+    "How Does htop Differ From top in Linux?",
+    "When managing system resources in Linux, the top and htop command-line utilities are the most common tools for monitoring CPU, memory, and running processes. While both serve the same fundamental purpose, top is a traditional, bare-bones utility pre-inst",
+    false
+  ],
+  [
+    3,
+    "How to Install htop on RHEL?",
+    "This article provides a quick guide on how to install htop, an interactive process viewer, on Red Hat Enterprise Linux (RHEL). It covers the necessary prerequisites, including enabling the Extra Packages for Enterprise Linux (EPEL) repository, and the ex",
+    false
+  ],
+  [
+    2,
+    "How to Install htop on Debian Linux?",
+    "The htop utility is an interactive, real-time process viewer and system monitor that improves upon the classic top command by offering a color-coded, user-friendly interface. Managing processes with htop allows system administrators and users to easily m",
+    false
+  ],
+  [
+    1,
+    "What is the primary purpose of htop in Linux?",
+    "The htop command-line tool in Linux is an interactive, real-time system monitor designed to give users a comprehensive overview of their system's resource utilization. It serves as an advanced alternative to the traditional top command, allowing administ",
+    false
+  ]
+]
