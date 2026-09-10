@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Visual Cue Shows a New Process in htop? - htop</title>
+    <meta name="description" content="The htop command line tool provides a real-time, dynamic view of a Linux system's running processes, using distinct color flashes to visually signal the creation of new processes and the termination of existing ones. When a new process spawns, its corres">
+    <link rel="canonical" href="https://salivity.github.io/htop/article/what-visual-cue-shows-a-new-process-in-htop">
+    <link rel="search" type="application/opensearchdescription+xml" title="htop" href="/htop/opensearch.xml">
+    <link rel="icon" href="/htop/favicon.ico">
+    <link rel="stylesheet" href="/htop/css/style.css">
+    <link media="print" rel="stylesheet" href="/htop/css/print.css">
+    <script src="/htop/js/fuse.min.js"></script>
+    <script src="/htop/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="What Visual Cue Shows a New Process in htop? - htop" />
+    <meta property="og:url" content="https://salivity.github.io/htop/article/what-visual-cue-shows-a-new-process-in-htop" />
+    <meta property="og:image:url" content="https://salivity.github.io/htop/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/htop/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The htop command line tool provides a real-time, dynamic view of a Linux system's running processes, using distinct color flashes to visually signal the creation of new processes and the termination of existing ones. When a new process spawns, its corres" />
+    <link rel="manifest" href="/htop/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/htop/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>htop</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/htop/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article><h1 id="what-visual-cue-shows-a-new-process-in-htop">What Visual Cue
+Shows a New Process in htop?</h1>
+<p>The <code>htop</code> command line tool provides a real-time, dynamic
+view of a Linux system's running processes, using distinct color flashes
+to visually signal the creation of new processes and the termination of
+existing ones. When a new process spawns, its corresponding row in the
+process list briefly highlights in <strong>green</strong>. Conversely,
+when a process ends, it momentarily highlights in <strong>red</strong>
+before disappearing from the list. This color-coded system allows
+administrators and developers to instantly track system activity and
+process churn without scanning text.</p>
+<h3 id="how-htop-highlights-process-changes">How htop Highlights Process
+Changes</h3>
+<p>By default, <code>htop</code> refreshes its statistics every delay
+interval (typically every 1.5 seconds). During these refresh cycles, the
+utility compares the current process tree against the previous snapshot
+to identify changes:</p>
+<ul>
+<li><strong>New Processes (Green):</strong> Any PID (Process ID) that
+appears in the current cycle but was absent in the last is highlighted
+with a green background.</li>
+<li><strong>Terminated Processes (Red):</strong> Any PID that was
+present in the last cycle but has now closed is highlighted with a red
+background for one refresh cycle before being removed from the
+display.</li>
+</ul>
+<p>This visual feedback is incredibly useful for troubleshooting
+application behavior, such as identifying "fork bombs," spotting
+short-lived cron jobs, or witnessing a daemon crash and rapidly attempt
+to restart.</p>
+<h3 id="configuring-the-visual-alert-delay">Configuring the Visual Alert
+Delay</h3>
+<p>If the green and red flashes disappear too quickly for you to track,
+or if they are distracting, you can customize or disable this behavior
+directly within the <code>htop</code> configuration menu:</p>
+<ol type="1">
+<li>Launch <code>htop</code> in your terminal.</li>
+<li>Press <strong>F2</strong> (or <strong>S</strong>) to enter the
+<strong>Setup</strong> menu.</li>
+<li>Use the arrow keys to navigate to <strong>Display
+options</strong>.</li>
+<li>Scroll down to the setting labeled <strong>Highlight new and old
+processes</strong>.</li>
+<li>Press <strong>Space</strong> to toggle this feature on or off.</li>
+</ol>
+<p>Additionally, the <strong>Highlight program basenames</strong> option
+can be toggled in this same menu to change how the process names
+themselves are colored, further aiding in visual scannability.</p></article>
+        <div id="comments-container"></div>
+
+        <script>
+            const utterancesScript = document.createElement('script');
+            
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/htop'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/htop/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/htop/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>
